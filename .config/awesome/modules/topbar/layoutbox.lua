@@ -18,7 +18,7 @@ Init_layoutbox = function(s)
             widget = awful.widget.layoutbox(s)
         }
     )
-    s.layoutbox:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    --s.layoutbox:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
     s.layoutbox.x = s.workarea.x + s.workarea.width - beautiful.bar_gap - beautiful.bar_height
     s.layoutbox.y = beautiful.bar_gap
 end

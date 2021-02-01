@@ -29,7 +29,7 @@ Init_clock = function(s)
         },
         layout = wibox.layout.manual
     }
-    s.clock:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    --s.clock:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
     s.clock.x = s.workarea.x + s.workarea.width / 2 - s.clock.width / 2
     s.clock.y = beautiful.bar_gap
 end

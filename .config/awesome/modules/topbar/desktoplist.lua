@@ -67,7 +67,7 @@ Init_desktoplist = function(s)
             }
         }
     )
-    s.desktoplist:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    --s.desktoplist:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
     s.desktoplist.x = s.workarea.x + s.workarea.width - 2 * beautiful.bar_gap - s.layoutbox.width - s.desktoplist.width
     s.desktoplist.y = beautiful.bar_gap
 end

@@ -93,7 +93,7 @@ Init_tasklist = function(s)
             }
         }
     )
-    --s.tasklist:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    s.tasklist:struts({top = beautiful.bar_height + beautiful.bar_gap})
     s.tasklist.x = s.workarea.x + beautiful.bar_gap * 2 + s.startmenu.width
     s.tasklist.y = beautiful.bar_gap
 end

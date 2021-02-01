@@ -51,7 +51,7 @@ Init_startmenu = function(s)
             widget = Launcher
         }
     )
-    s.startmenu:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    --s.startmenu:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
     s.startmenu.x = s.workarea.x + beautiful.bar_gap
     s.startmenu.y = beautiful.bar_gap
 end

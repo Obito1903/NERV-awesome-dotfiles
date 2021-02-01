@@ -23,7 +23,6 @@ theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = dpi(0)
 theme.border_width = dpi(1)
 theme.border_normal = "#000000"
 theme.border_focus = "#535d6c"
@@ -59,9 +58,10 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)
-theme.bar_height = dpi(30)
+theme.bar_height = dpi(25)
 theme.segment_base_width = dpi(30)
 theme.bar_gap = dpi(5)
+theme.useless_gap = dpi(2)
 
 theme.corner_raduis = 4
 
@@ -122,7 +122,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.icon_theme = "Flat-Remix-Red-Dark"
 
 return theme
 
