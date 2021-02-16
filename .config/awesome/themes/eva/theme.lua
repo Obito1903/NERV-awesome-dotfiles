@@ -12,18 +12,18 @@ local theme = {}
 
 theme.font = "sans 8"
 
-theme.bg_normal = "#8650F255"
-theme.bg_focus = "#C0359D55"
-theme.bg_urgent = "#F1437555"
-theme.bg_minimize = "#6F2EEF40"
-theme.bg_systray = "#36245855"
+theme.bg_normal = "#1E1E1E99"
+theme.bg_focus = "#403F4099"
+theme.bg_urgent = "#80000099"
+theme.bg_minimize = "#2D2D2E99"
+theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#FFFFFF"
+theme.fg_normal = "#ffffff"
 theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.border_width = dpi(1)
+theme.border_width = 0
 theme.border_normal = "#000000"
 theme.border_focus = "#535d6c"
 theme.border_marked = "#91231c"
@@ -97,7 +97,7 @@ theme.titlebar_maximized_button_focus_inactive = themes_path .. "default/titleba
 theme.titlebar_maximized_button_normal_active = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "nerv/nerv2.png"
+theme.wallpaper = themes_path .. "eva/background.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
@@ -118,8 +118,8 @@ theme.layout_cornersw = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse = themes_path .. "default/layouts/cornersew.png"
 
 -- Generate Awesome icon:
--- theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
-theme.awesome_icon = themes_path .. "nerv/icons/nerv_icon2.png"
+theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
+
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = "Flat-Remix-Red-Dark"

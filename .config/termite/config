@@ -48,31 +48,31 @@ hyperlinks = true
 
 foreground = #aaaaaa
 #foreground_bold = #ffffff
-background = #0F1115
+background = #1E1E1E
 
 # 20% background transparency (requires a compositor)
-background = rgba(46, 52, 64, 0.33)
+background = rgba(30, 30, 30, 0.6)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
 
 # Colors from color0 to color254 can be set
 color0 = #000000
-color1 = #d36265
-color2 = #aece91
-color3 = #e7e18c
-color4 = #7a7ab0
-color5 = #963c59
-color6 = #418179
-color7 = #bebebe
-color8 = #666666
-color9 = #ef8171
-color10 = #e5f779
-color11 = #fff796
-color12 = #4186be
-color13 = #ef9ebe
-color14 = #71bebe
-color15 = #ffffff
+color1 = #CD0000
+color2 = #00CD00
+color3 = #CDCD00
+color4 = #1E90FF
+color5 = #CD00CD
+color6 = #00CDCD
+color7 = #E5E5E5
+color8 = #4C4C4C
+color9 = #FF0000
+color10 = #00FF00
+color11 = #FFFF00
+color12 = #4682B4
+color13 = #FF00FF
+color14 = #00FFFF
+color15 = #FFFFFF
 
 [hints]
 #font = Monospace 12

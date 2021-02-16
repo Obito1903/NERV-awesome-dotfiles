@@ -1,5 +1,6 @@
 configuration {
 modi: "window,drun,ssh,combi";
+terminal: "/usr/bin/termite";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/

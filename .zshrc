@@ -120,6 +120,7 @@ alias l='ls -CF'
 command -v code-insiders > /dev/null && alias code='code-insiders'
 alias npm='/usr/bin/npm'
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && alias l='ls -l' && alias lt='ls --tree' && alias la='ls -a' && alias lla='ls -la'
+command -v termite > /dev/null && export TERM=termite
 
 if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -141,4 +142,4 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-command -v neofetch > /dev/null && neofetch
+command -v neofetch > /dev/null && neofetch --ascii_colors 1 --ascii ${HOME}/.config/nerv

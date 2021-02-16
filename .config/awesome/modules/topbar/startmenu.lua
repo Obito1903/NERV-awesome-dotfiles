@@ -48,7 +48,8 @@ Init_startmenu = function(s)
             height = beautiful.bar_height,
             shape = shapes.rounded_rect_shape,
             layout = wibox.container.margin,
-            widget = Launcher
+            widget = Launcher,
+            bg = "#00000000"
         }
     )
     --s.startmenu:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
