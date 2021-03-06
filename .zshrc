@@ -130,6 +130,10 @@ if [ -d "$HOME/go/bin" ]; then
     export PATH="~/go/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="~/.cargo/bin:$PATH"
+fi
+
 #man color
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
