@@ -46,7 +46,7 @@ Init_tasklist = function(s)
         {
             screen = s,
             visible = true,
-            ontop = true,
+            ontop = false,
             type = "menu",
             width = s.workarea.width / 2 - s.clock.width / 2 - s.startmenu.width - beautiful.bar_gap * 3,
             height = beautiful.bar_height,

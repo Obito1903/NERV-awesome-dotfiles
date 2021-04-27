@@ -8,6 +8,7 @@ require("modules.topbar.taskbar")
 require("modules.topbar.systray")
 require("modules.topbar.sysinfo")
 
+
 awful.screen.connect_for_each_screen(
     function(s)
         Init_startmenu(s)

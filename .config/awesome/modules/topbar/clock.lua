@@ -8,7 +8,7 @@ Init_clock = function(s)
         {
             screen = s,
             visible = true,
-            ontop = true,
+            ontop = false,
             type = "menu",
             width = 3 * beautiful.segment_base_width,
             height = beautiful.bar_height,

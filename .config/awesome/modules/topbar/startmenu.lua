@@ -42,7 +42,7 @@ Init_startmenu = function(s)
         {
             screen = s,
             visible = true,
-            ontop = true,
+            ontop = false,
             type = "menu",
             width = beautiful.bar_height,
             height = beautiful.bar_height,

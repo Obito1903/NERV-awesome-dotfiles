@@ -8,7 +8,7 @@ Init_systray = function(s)
         {
             screen = s,
             visible = true,
-            ontop = true,
+            ontop = false,
             type = "menu",
             width = ((s.workarea.width - s.clock.width) / 2 - s.desktoplist.width - s.layoutbox.width -
                 4 * beautiful.bar_gap) /

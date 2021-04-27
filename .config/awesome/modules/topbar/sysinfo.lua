@@ -18,7 +18,7 @@ Init_sysinfo = function(s)
         {
             screen = s,
             visible = true,
-            ontop = true,
+            ontop = false,
             type = "menu",
             width = (s.workarea.width - s.clock.width) / 2 - s.desktoplist.width - s.layoutbox.width -
                 5 * beautiful.bar_gap -
@@ -28,6 +28,10 @@ Init_sysinfo = function(s)
         }
     )
     s.sysinfo:setup {
+        {
+            awful.widget.keyboardlayout(),
+            layout = wibox.layout.fixed.horizontal
+        },
         {
             brightness_widget(
                 {

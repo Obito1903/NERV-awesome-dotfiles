@@ -12,14 +12,12 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
-require("awful.hotkeys_popup.keys")
+
+
 
 -- load custom modules
 local shapes = require("modules.shapes")
-
-local brightness_widget = require("modules.topbar.widgets.brightness-widget.brightness")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -59,18 +57,14 @@ do
 end
 -- }}}
 
--- {{{ Global Variable definition
-
 -- Initialize the Theme class
 local themeDir = gears.filesystem.get_dir("config") .. "themes/nerv/theme.lua"
 print("Loading Theme From :" .. themeDir)
 beautiful.init(themeDir)
 print("Theme successfully loaded")
 
--- App variable / define path to certain appears
-terminal = "xterm"
-editor = "code"
-editor_cmd = terminal .. " -e vim"
+-- Load default app config
+local apps = require("configs.apps")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -90,15 +84,6 @@ awful.layout.layouts = {
     awful.layout.suit.spiral
 }
 
--- }}}
-
--- {{{
-
--- }}}
-
--- Keyboard layout indicator
-Keyboardlayout = awful.widget.keyboardlayout()
-
 -- Init top bar
 awful.screen.connect_for_each_screen(
     function(s)
@@ -110,261 +95,17 @@ awful.screen.connect_for_each_screen(
 
 require("modules.topbar.init")
 
--- {{{ Mouse binding
-root.buttons(
-    gears.table.join(
-        awful.button(
-            {},
-            3,
-            function()
-                Launcher_MainMenu:toggle()
-            end
-        ),
-        awful.button({}, 4, awful.tag.viewnext),
-        awful.button({}, 5, awful.tag.viewprev)
-    )
-)
--- }}}
 
--- Global keybinding
-globalkeys =
-    gears.table.join(
-    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
-    awful.key(
-        {modkey},
-        "w",
-        function()
-            Launcher_MainMenu:show()
-        end,
-        {
-            description = "show main menu",
-            group = "awesome"
-        }
-    ),
-    awful.key(
-        {modkey},
-        "Left",
-        awful.tag.viewprev,
-        {
-            description = "previous desktop",
-            group = "virtual desktop"
-        }
-    ),
-    awful.key({modkey}, "Right", awful.tag.viewnext, {description = "next desktop", group = "virtual desktop"}),
-    awful.key(
-        {modkey},
-        "BackSpace",
-        awful.tag.history.restore,
-        {
-            description = "return to previous desktop",
-            group = "virtual desktop"
-        }
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Right",
-        function()
-            awful.client.focus.byidx(1)
-        end,
-        {description = "focus next window", group = "window"}
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Left",
-        function()
-            awful.client.focus.byidx(-1)
-        end,
-        {
-            description = "focus previous window",
-            group = "window"
-        }
-    ),
-    awful.key(
-        {"Mod1"},
-        "Tab",
-        function()
-            awful.client.focus.byidx(1)
-        end,
-        {
-            description = "focus next window",
-            group = "window"
-        }
-    ),
-    awful.key(
-        {modkey},
-        "Tab",
-        function()
-            awful.spawn("rofi -show window")
-        end,
-        {
-            description = "open window switcher",
-            group = "window"
-        }
-    ),
-    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "focus urgent window", group = "window"}),
-    awful.key(
-        {modkey, "Mod1"},
-        "Up",
-        function()
-            awful.screen.focus_relative(1)
-        end,
-        {
-            description = "focus on next screen",
-            group = "screen"
-        }
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Down",
-        function()
-            awful.screen.focus_relative(-1)
-        end,
-        {
-            description = "focus on previous screen",
-            group = "screen"
-        }
-    ),
-    awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
-    awful.key(
-        {modkey},
-        "r",
-        function()
-            awful.spawn("rofi -combi-modi drun,ssh -show-icons -show combi")
-        end,
-        {
-            description = "Open app launcher",
-            group = "apps"
-        }
-    ),
-    awful.key(
-        {},
-        "Print",
-        function()
-            awful.spawn("flameshot gui")
-        end,
-        {
-            description = "Screenshot",
-            group = "apps"
-        }
-    ),
-    awful.key(
-        {},
-        "XF86MonBrightnessUp",
-        function()
-            brightness_widget:inc()
-        end,
-        {description = "increase brightness", group = "custom"}
-    ),
-    awful.key(
-        {},
-        "XF86MonBrightnessUp",
-        function()
-            brightness_widget:dec()
-        end,
-        {description = "decrease brightness", group = "custom"}
-    )
-)
+-- Load keybindings
+require("configs.keybinds.mousekeys")
+require("configs.keybinds.globalkeys")
+require("configs.keybinds.tagrelatedkeys")
 
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 8 do
-    globalkeys =
-        gears.table.join(
-        globalkeys,
-        -- View tag only.
-        awful.key(
-            {modkey},
-            "#" .. i + 9,
-            function()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    tag:view_only()
-                end
-            end,
-            {description = "view tag #" .. i, group = "tag"}
-        ),
-        -- Toggle tag display.
-        awful.key(
-            {modkey, "Control"},
-            "#" .. i + 9,
-            function()
-                local screen = awful.screen.focused()
-                local tag = screen.tags[i]
-                if tag then
-                    awful.tag.viewtoggle(tag)
-                end
-            end,
-            {description = "toggle tag #" .. i, group = "tag"}
-        ),
-        -- Move client to tag.
-        awful.key(
-            {modkey, "Shift"},
-            "#" .. i + 9,
-            function()
-                if client.focus then
-                    local tag = client.focus.screen.tags[i]
-                    if tag then
-                        client.focus:move_to_tag(tag)
-                    end
-                end
-            end,
-            {description = "move focused client to tag #" .. i, group = "tag"}
-        ),
-        -- Toggle tag on focused client.
-        awful.key(
-            {modkey, "Control", "Shift"},
-            "#" .. i + 9,
-            function()
-                if client.focus then
-                    local tag = client.focus.screen.tags[i]
-                    if tag then
-                        client.focus:toggle_tag(tag)
-                    end
-                end
-            end,
-            {description = "toggle focused client on tag #" .. i, group = "tag"}
-        )
-    )
-end
+root.keys(Globalkeys)
 
-root.keys(globalkeys)
+require("configs.keybinds.clientkeys")
 
---Client keybinding
-clientkeys =
-    gears.table.join(
-    awful.key(
-        {modkey},
-        "f",
-        function(c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {
-            description = "toggle fullscreen",
-            group = "window"
-        }
-    ),
-    awful.key(
-        {modkey, "Ctrl"},
-        "q",
-        function(c)
-            c:kill()
-        end,
-        {description = "close", group = "window"}
-    ),
-    awful.key(
-        {modkey},
-        "n",
-        function(c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end,
-        {description = "minimize", group = "window"}
-    )
-)
+
 
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -375,7 +116,7 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            keys = clientkeys,
+            keys = Clientkeys,
             buttons = clientbuttons,
             screen = awful.screen.preferred,
             placement = awful.placement.no_overlap + awful.placement.no_offscreen
@@ -506,7 +247,7 @@ client.connect_signal(
     end
 )
 
-awful.spawn("picom")
+-- awful.spawn("picom")
 -- awful.spawn.easy_async_with_shell("picom", function()
     -- awful.spawn.easy_async_with_shell("xwinwrap -g 1920x1080 -ov -- mpv --loop=inf -wid WID ~/.wallpapers/nerv.mp4")
 -- end)
