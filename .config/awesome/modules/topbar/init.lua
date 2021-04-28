@@ -8,6 +8,7 @@ require("modules.topbar.taskbar")
 require("modules.topbar.systray")
 require("modules.topbar.sysinfo")
 
+ShowTopBar = true
 
 awful.screen.connect_for_each_screen(
     function(s)
@@ -22,3 +23,14 @@ awful.screen.connect_for_each_screen(
         Init_sysinfo(s)
     end
 )
+
+ToggleTopBar = function ()
+    s = awful.screen.focused()
+    s.desktoplist.visible = not s.desktoplist.visible
+    s.clock.visible = not s.clock.visible
+    s.layoutbox.visible = not s.layoutbox.visible
+    s.startmenu.visible = not s.startmenu.visible
+    s.sysinfo.visible = not s.sysinfo.visible
+    s.systray.visible = not s.systray.visible
+    s.tasklist.visible = not s.tasklist.visible
+end

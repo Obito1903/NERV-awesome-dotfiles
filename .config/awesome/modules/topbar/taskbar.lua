@@ -45,7 +45,7 @@ Init_tasklist = function(s)
         wibox(
         {
             screen = s,
-            visible = true,
+            visible = ShowTopBar,
             ontop = false,
             type = "menu",
             width = s.workarea.width / 2 - s.clock.width / 2 - s.startmenu.width - beautiful.bar_gap * 3,

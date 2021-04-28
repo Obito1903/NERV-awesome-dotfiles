@@ -17,7 +17,7 @@ Init_sysinfo = function(s)
         wibox(
         {
             screen = s,
-            visible = true,
+            visible = ShowTopBar,
             ontop = false,
             type = "menu",
             width = (s.workarea.width - s.clock.width) / 2 - s.desktoplist.width - s.layoutbox.width -

@@ -1,8 +1,12 @@
 local awful = require("awful");
 local gears = require("gears");
+local beautiful = require("beautiful")
 
 local brightness_widget = require("modules.topbar.widgets.brightness-widget.brightness")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
+require("modules.utils")
+
 
 -- Global keybinding
 Globalkeys =
@@ -160,5 +164,48 @@ Globalkeys =
             awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
         end,
         {description = "decrease brightness", group = "custom"}
+    ),
+    awful.key(
+        {modkey, "Shift"},
+        "f",
+        function()
+            ToggleTopBar()
+        end,
+        {description = "Disable Top bar", group = "custom"}
+    ),
+    awful.key(
+        {modkey, "Control"},
+        "Up",
+        function()
+            beautiful.useless_gap = beautiful.useless_gap + 1
+            awful.layout.arrange(awful.screen.focused())
+        end,
+        {description = "Increase gap", group = "custom"}
+    ),
+    awful.key(
+        {modkey, "Control"},
+        "Down",
+        function()
+            beautiful.useless_gap = beautiful.useless_gap - 1
+            awful.layout.arrange(awful.screen.focused())
+        end,
+        {description = "Decrease gap", group = "custom"}
+    ),
+    awful.key(
+        {modkey, "Control"},
+        "b",
+        function()
+            ToggleRoundCorner()
+        end,
+        {description = "Toggle round corner", group = "Compositor"}
+    ),
+    awful.key(
+        {modkey, "Control"},
+        "p",
+        function()
+            TogglePicom()
+        end,
+        {description = "Toggle Compositor", group = "Compositor"}
     )
+
 )

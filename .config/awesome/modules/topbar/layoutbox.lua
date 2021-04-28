@@ -8,7 +8,7 @@ Init_layoutbox = function(s)
         wibox(
         {
             screen = s,
-            visible = true,
+            visible = ShowTopBar,
             ontop = false,
             type = "menu",
             width = beautiful.bar_height,

@@ -7,7 +7,7 @@ Init_clock = function(s)
         wibox(
         {
             screen = s,
-            visible = true,
+            visible = ShowTopBar,
             ontop = false,
             type = "menu",
             width = 3 * beautiful.segment_base_width,
