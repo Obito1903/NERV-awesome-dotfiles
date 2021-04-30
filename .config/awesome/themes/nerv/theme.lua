@@ -3,54 +3,46 @@
 ---------------------------
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
-local dpi = xresources.apply_dpi
-
+local screen = require("awful.screen")
 local gfs = require("gears.filesystem")
+local shapes = require("modules.shapes")
+local naughty = require("naughty")
+
 local themes_path = gfs.get_dir("config") .. "themes/"
 
+local dpi = xresources.apply_dpi
 local theme = {}
 
 theme.font = "sans 8"
 
-theme.bg_normal = "#8650F255"
-theme.bg_focus = "#C0359D55"
-theme.bg_urgent = "#F1437555"
-theme.bg_minimize = "#6F2EEF40"
-theme.bg_systray = "#36245855"
+theme.bg_normal = "#8650F230"
+theme.bg_focus = "#C0359D30"
+theme.bg_urgent = "#F1437560"
+theme.bg_minimize = "#6F2EEF20"
+theme.bg_systray = "#190F2D"
 
 theme.fg_normal = "#FFFFFF"
 theme.fg_focus = "#ffffff"
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
-theme.border_width = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
-theme.border_marked = "#91231c"
-
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
--- theme.taglist_bg_focus = "#ff0000"
+theme.border_width = dpi(0)
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+                                taglist_square_size, theme.fg_normal)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+                                  taglist_square_size, theme.fg_normal)
 
 -- Variables set for theming notifications:
--- notification_font
--- notification_[bg|fg]
--- notification_[width|height|margin]
--- notification_[border_color|border_width|shape|opacity]
+theme.notification_border_width = dpi(0)
+theme.notification_icon_size = dpi(80)
+theme.notification_max_width = screen.focused().geometry.width / 4
+
+theme.notification_border_color = "#00000000"
+theme.notification_bg = "#36245860"
+naughty.config.presets.critical.bg = "#F1437560"
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -58,6 +50,12 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height = dpi(15)
 theme.menu_width = dpi(100)
+
+-- Variables set for hotkeys popup
+theme.hotkeys_bg = theme.bg_normal
+theme.hotkeys_modifiers_fg = "#F14375"
+theme.hotkeys_label_fg = "#000000"
+
 theme.bar_height = dpi(25)
 theme.segment_base_width = dpi(30)
 theme.bar_gap = dpi(5)
@@ -71,33 +69,53 @@ theme.corner_raduis = 4
 -- theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path .. "default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus = themes_path .. "default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = themes_path ..
+                                         "default/titlebar/close_normal.png"
+theme.titlebar_close_button_focus = themes_path ..
+                                        "default/titlebar/close_focus.png"
 
-theme.titlebar_minimize_button_normal = themes_path .. "default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus = themes_path .. "default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal = themes_path ..
+                                            "default/titlebar/minimize_normal.png"
+theme.titlebar_minimize_button_focus = themes_path ..
+                                           "default/titlebar/minimize_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = themes_path .. "default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive = themes_path .. "default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path .. "default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active = themes_path .. "default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive =
+    themes_path .. "default/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive =
+    themes_path .. "default/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active =
+    themes_path .. "default/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active =
+    themes_path .. "default/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = themes_path .. "default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive = themes_path .. "default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path .. "default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active = themes_path .. "default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive =
+    themes_path .. "default/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive =
+    themes_path .. "default/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active =
+    themes_path .. "default/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active =
+    themes_path .. "default/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = themes_path .. "default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive = themes_path .. "default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path .. "default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active = themes_path .. "default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive =
+    themes_path .. "default/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive =
+    themes_path .. "default/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active =
+    themes_path .. "default/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active =
+    themes_path .. "default/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path .. "default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive = themes_path .. "default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path .. "default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active = themes_path .. "default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive =
+    themes_path .. "default/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive =
+    themes_path .. "default/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active =
+    themes_path .. "default/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active =
+    themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "nerv/nerv2.png"
+theme.wallpaper = themes_path .. "nerv/nerv3.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
