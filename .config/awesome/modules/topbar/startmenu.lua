@@ -28,31 +28,25 @@ local menu_terminal = {"open terminal", apps.terminal}
 
 local Launcher_MainMenu = awful.menu({items = {menu_awesome, menu_terminal}})
 
-local Launcher =
-    awful.widget.launcher(
-    {
-        image = beautiful.awesome_icon,
-        menu = Launcher_MainMenu
-    }
-)
+local Launcher = awful.widget.launcher({
+    image = beautiful.awesome_icon,
+    menu = Launcher_MainMenu
+})
 
 Init_startmenu = function(s)
-    s.startmenu =
-        wibox(
-        {
-            screen = s,
-            visible = ShowTopBar,
-            ontop = false,
-            type = "menu",
-            width = beautiful.bar_height,
-            height = beautiful.bar_height,
-            shape = shapes.rounded_rect_shape,
-            layout = wibox.container.margin,
-            widget = Launcher,
-            bg = "#00000000"
-        }
-    )
-    --s.startmenu:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
+    s.startmenu = wibox({
+        screen = s,
+        visible = ShowTopBar,
+        ontop = false,
+        type = "menu",
+        width = beautiful.bar_height,
+        height = beautiful.bar_height,
+        shape = shapes.rounded_rect_shape,
+        layout = wibox.container.margin,
+        widget = Launcher,
+        bg = "#00000000"
+    })
+    -- s.startmenu:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})
     s.startmenu.x = s.workarea.x + beautiful.bar_gap
     s.startmenu.y = beautiful.bar_gap
 end

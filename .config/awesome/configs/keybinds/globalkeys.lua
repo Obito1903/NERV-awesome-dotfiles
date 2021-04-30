@@ -2,210 +2,89 @@ local awful = require("awful");
 local gears = require("gears");
 local beautiful = require("beautiful")
 
-local brightness_widget = require("modules.topbar.widgets.brightness-widget.brightness")
+local brightness_widget = require(
+                              "modules.topbar.widgets.brightness-widget.brightness")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 require("modules.utils")
 
-
 -- Global keybinding
-Globalkeys =
-    gears.table.join(
-    awful.key({modkey}, "s", hotkeys_popup.show_help, {description = "show help", group = "awesome"}),
-    -- awful.key(
-    --     {modkey},
-    --     "w",
-    --     function()
-    --         Launcher_MainMenu:show()
-    --     end,
-    --     {
-    --         description = "show main menu",
-    --         group = "awesome"
-    --     }
-    -- ),
-    awful.key(
-        {modkey},
-        "Left",
-        awful.tag.viewprev,
-        {
-            description = "previous desktop",
-            group = "virtual desktop"
-        }
-    ),
-    awful.key({modkey}, "Right", awful.tag.viewnext, {description = "next desktop", group = "virtual desktop"}),
-    awful.key(
-        {modkey},
-        "BackSpace",
-        awful.tag.history.restore,
-        {
-            description = "return to previous desktop",
-            group = "virtual desktop"
-        }
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Right",
-        function()
-            awful.client.focus.byidx(1)
-        end,
-        {description = "focus next window", group = "window"}
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Left",
-        function()
-            awful.client.focus.byidx(-1)
-        end,
-        {
-            description = "focus previous window",
-            group = "window"
-        }
-    ),
-    awful.key(
-        {"Mod1"},
-        "Tab",
-        function()
-            awful.client.focus.byidx(1)
-        end,
-        {
-            description = "focus next window",
-            group = "window"
-        }
-    ),
-    awful.key(
-        {modkey},
-        "Tab",
-        function()
-            awful.spawn("rofi -show window")
-        end,
-        {
-            description = "open window switcher",
-            group = "window"
-        }
-    ),
-    awful.key({modkey}, "u", awful.client.urgent.jumpto, {description = "focus urgent window", group = "window"}),
-    awful.key(
-        {modkey, "Mod1"},
-        "Up",
-        function()
-            awful.screen.focus_relative(1)
-        end,
-        {
-            description = "focus on next screen",
-            group = "screen"
-        }
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Down",
-        function()
-            awful.screen.focus_relative(-1)
-        end,
-        {
-            description = "focus on previous screen",
-            group = "screen"
-        }
-    ),
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
-              {description = "swap with next client by index", group = "window"}),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
-              {description = "swap with previous client by index", group = "window"}),
-    awful.key({modkey, "Control"}, "r", awesome.restart, {description = "reload awesome", group = "awesome"}),
-    awful.key(
-        {modkey},
-        "r",
-        function()
-            awful.spawn("rofi -combi-modi drun,ssh -show-icons -show combi")
-        end,
-        {
-            description = "Open app launcher",
-            group = "apps"
-        }
-    ),
-    awful.key(
-        {},
-        "Print",
-        function()
-            awful.spawn("flameshot gui")
-        end,
-        {
-            description = "Screenshot",
-            group = "apps"
-        }
-    ),
-    awful.key(
-        {},
-        "XF86MonBrightnessUp",
-        function()
-            brightness_widget:inc()
-        end,
-        {description = "increase brightness", group = "custom"}
-    ),
-    awful.key(
-        {},
-        "XF86MonBrightnessUp",
-        function()
-            brightness_widget:dec()
-        end,
-        {description = "decrease brightness", group = "custom"}
-    ),
-    awful.key(
-        {},
-        "XF86AudioRaiseVolume",
-        function()
-            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
-        end,
-        {description = "increase brightness", group = "custom"}
-    ),
-    awful.key(
-        {},
-        "XF86AudioLowerVolume",
-        function()
-            awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
-        end,
-        {description = "decrease brightness", group = "custom"}
-    ),
-    awful.key(
-        {modkey, "Shift"},
-        "f",
-        function()
-            ToggleTopBar()
-        end,
-        {description = "Disable Top bar", group = "custom"}
-    ),
-    awful.key(
-        {modkey, "Control"},
-        "Up",
-        function()
-            beautiful.useless_gap = beautiful.useless_gap + 1
-            awful.layout.arrange(awful.screen.focused())
-        end,
-        {description = "Increase gap", group = "custom"}
-    ),
-    awful.key(
-        {modkey, "Control"},
-        "Down",
-        function()
-            beautiful.useless_gap = beautiful.useless_gap - 1
-            awful.layout.arrange(awful.screen.focused())
-        end,
-        {description = "Decrease gap", group = "custom"}
-    ),
-    awful.key(
-        {modkey, "Control"},
-        "b",
-        function()
-            ToggleRoundCorner()
-        end,
-        {description = "Toggle round corner", group = "Compositor"}
-    ),
-    awful.key(
-        {modkey, "Control"},
-        "p",
-        function()
-            TogglePicom()
-        end,
-        {description = "Toggle Compositor", group = "Compositor"}
-    )
-
-)
+Globalkeys = gears.table.join(awful.key({modkey}, "s", hotkeys_popup.show_help,
+                                        {
+    description = "Show help",
+    group = "Awesome"
+}), awful.key({modkey}, "Left", awful.tag.viewprev,
+              {description = "Previous desktop", group = "Tag Navigation"}),
+                              awful.key({modkey}, "Right", awful.tag.viewnext, {
+    description = "Next desktop",
+    group = "Tag Navigation"
+}), awful.key({modkey}, "BackSpace", awful.tag.history.restore, {
+    description = "Return to previous desktop",
+    group = "Tag Navigation"
+}), awful.key({"Mod1", "Shift"}, "Tab", function()
+    awful.client.focus.byidx(-1)
+end, {description = "Focus previous window", group = "Client Navigation"}),
+                              awful.key({"Mod1"}, "Tab", function()
+    awful.client.focus.byidx(1)
+end, {description = "Focus next window", group = "Client Navigation"}),
+                              awful.key({modkey}, "Tab", function()
+    awful.spawn("rofi -show window")
+end, {description = "Open window switcher", group = "Client Navigation"}),
+                              awful.key({modkey}, "u",
+                                        awful.client.urgent.jumpto, {
+    description = "Focus urgent window",
+    group = "Client Navigation"
+}), awful.key({modkey, "Mod1"}, "Up", function()
+    awful.screen.focus_relative(1)
+end, {description = "Focus on next screen", group = "Screen"}),
+                              awful.key({modkey, "Mod1"}, "Down", function()
+    awful.screen.focus_relative(-1)
+end, {description = "Focus on previous screen", group = "Screen"}),
+                              awful.key({modkey, "Control"}, "Right",
+                                        function()
+    awful.client.swap.byidx(1)
+end, {
+    description = "Swap with next client by index",
+    group = "Client Managment"
+}), awful.key({modkey, "Control"}, "Left", function()
+    awful.client.swap.byidx(-1)
+end, {
+    description = "Swap with previous client by index",
+    group = "Client Managment"
+}), awful.key({modkey, "Control"}, "r", awesome.restart,
+              {description = "Reload Awesome", group = "Awesome"}),
+                              awful.key({modkey}, "r", function()
+    awful.spawn("rofi -combi-modi drun,ssh -show-icons -show combi")
+end, {description = "Open app launcher", group = "Apps"}),
+                              awful.key({}, "Print", function()
+    awful.spawn("flameshot gui")
+end, {description = "Screenshot", group = "Apps"}),
+                              awful.key({}, "XF86MonBrightnessUp", function()
+    brightness_widget:inc()
+end, {description = "Increase brightness", group = "System Control"}),
+                              awful.key({}, "XF86MonBrightnessUp", function()
+    brightness_widget:dec()
+end, {description = "Decrease brightness", group = "System Control"}),
+                              awful.key({}, "XF86AudioRaiseVolume", function()
+    awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")
+end, {description = "Increase master volume", group = "System Control"}),
+                              awful.key({}, "XF86AudioLowerVolume", function()
+    awful.util.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")
+end, {description = "Decrease master volume", group = "System Control"}),
+                              awful.key({modkey, "Shift"}, "f", function()
+    ToggleTopBar()
+end, {description = "Disable Top bar", group = "UI"}),
+                              awful.key({modkey, "Control"}, "Up", function()
+    beautiful.useless_gap = beautiful.useless_gap + 1
+    awful.layout.arrange(awful.screen.focused())
+end, {description = "Increase gap", group = "UI"}),
+                              awful.key({modkey, "Control"}, "Down", function()
+    beautiful.useless_gap = beautiful.useless_gap - 1
+    awful.layout.arrange(awful.screen.focused())
+end, {description = "Decrease gap", group = "UI"}),
+                              awful.key({modkey, "Control"}, "b", function()
+    ToggleRoundCorner()
+end, {description = "Toggle round corner", group = "Compositor"}),
+                              awful.key({modkey, "Control"}, "p", function()
+    TogglePicom()
+end, {description = "Toggle Compositor", group = "Compositor"}))
