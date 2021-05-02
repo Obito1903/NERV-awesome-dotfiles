@@ -1,4 +1,4 @@
-local awful = require("awful");
+local awful = require("awful")
 
 -- Signal function to execute when a new client appears.
 client.connect_signal(

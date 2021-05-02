@@ -20,30 +20,37 @@ local shapes = require("modules.shapes")
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({
-        preset = naughty.config.presets.critical,
-        title = "Oops, there were errors during startup!",
-        text = awesome.startup_errors
-    })
+    naughty.notify(
+        {
+            preset = naughty.config.presets.critical,
+            title = "Oops, there were errors during startup!",
+            text = awesome.startup_errors
+        }
+    )
 end
 
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.connect_signal("debug::error", function(err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then
-            return
-        end
-        in_error = true
+    awesome.connect_signal(
+        "debug::error",
+        function(err)
+            -- Make sure we don't go into an endless error loop
+            if in_error then
+                return
+            end
+            in_error = true
 
-        naughty.notify({
-            preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = tostring(err)
-        })
-        in_error = false
-    end)
+            naughty.notify(
+                {
+                    preset = naughty.config.presets.critical,
+                    title = "Oops, an error happened!",
+                    text = tostring(err)
+                }
+            )
+            in_error = false
+        end
+    )
 end
 -- }}}
 
@@ -74,12 +81,13 @@ local apps = require("configs.apps")
 -- However, you can use another modifier like Mod1, but it may interact with others.
 
 -- Init top bar {{{
-awful.screen.connect_for_each_screen(function(s)
-    awful.tag({"1", "2", "3", "4", "5", "6", "7", "8"}, s,
-              awful.layout.layouts[1])
-    gears.wallpaper.maximized(beautiful.wallpaper, s)
-    -- Create a taglist widget
-end)
+awful.screen.connect_for_each_screen(
+    function(s)
+        awful.tag({"1", "2", "3", "4", "5", "6", "7", "8"}, s, awful.layout.layouts[1])
+        gears.wallpaper.maximized(beautiful.wallpaper, s)
+        -- Create a taglist widget
+    end
+)
 
 require("modules.topbar.init")
 -- }}}
