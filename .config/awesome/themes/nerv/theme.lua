@@ -61,7 +61,7 @@ theme.segment_base_width = dpi(30)
 theme.bar_gap = dpi(5)
 theme.useless_gap = dpi(2)
 
-theme.corner_raduis = 4
+theme.corner_raduis = 0
 
 -- You can add as many variables as
 -- you wish and access them by using

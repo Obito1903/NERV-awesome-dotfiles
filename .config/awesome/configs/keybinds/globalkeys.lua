@@ -1,6 +1,8 @@
 local awful = require("awful");
 local gears = require("gears");
 local beautiful = require("beautiful")
+local naughty = require("naughty")
+local utils = require("modules.utils")
 
 local brightness_widget = require(
                               "modules.topbar.widgets.brightness-widget.brightness")
@@ -82,9 +84,23 @@ end, {description = "Increase gap", group = "UI"}),
     beautiful.useless_gap = beautiful.useless_gap - 1
     awful.layout.arrange(awful.screen.focused())
 end, {description = "Decrease gap", group = "UI"}),
-                              awful.key({modkey, "Control"}, "b", function()
-    ToggleRoundCorner()
-end, {description = "Toggle round corner", group = "Compositor"}),
-                              awful.key({modkey, "Control"}, "p", function()
-    TogglePicom()
-end, {description = "Toggle Compositor", group = "Compositor"}))
+                              awful.key({modkey, "Control"}, "b",
+                                        utils.rounded_corner.toggle, {
+    description = "Toggle round corner",
+    group = "Compositor"
+}), awful.key({modkey, "Control"}, "p", utils.picom.toggle,
+              {description = "Toggle Compositor", group = "Compositor"}),
+                              awful.key({modkey, "Mod1"}, "Left", function()
+    awful.layout.inc(-1)
+end, {description = "Change to previous Layout", group = "Tag Managment"}),
+                              awful.key({modkey, "Mod1"}, "Right", function()
+    awful.layout.inc(1)
+end, {description = "Change to next Layout", group = "Tag Managment"}),
+                              awful.key({modkey, "Control"}, "n", function()
+    naughty.config.defaults.screen = awful.screen.focused()
+    naughty.notify({text = "This screen is set as default for notify"})
+end, {description = "Set default screen for naughty", group = "UI"}),
+                              awful.key({modkey}, "g", utils.glava.toggle, {
+    description = "Toggle glave",
+    group = "Apps"
+}))
