@@ -1,5 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
+local utils = require("modules.utils")
 
 root.buttons(
     gears.table.join(
@@ -7,7 +8,7 @@ root.buttons(
             {},
             3,
             function()
-                Launcher_MainMenu:toggle()
+                utils.launcher_menu:toggle()
             end
         ),
         awful.button({}, 4, awful.tag.viewnext),
