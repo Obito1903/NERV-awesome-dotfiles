@@ -76,5 +76,21 @@ Clientkeys =
             utils.client_volume(c, "-5")
         end,
         {description = "Decrease client volume", group = "Client Managment"}
+    ),
+    awful.key(
+        {modkey, "Mod1"},
+        "Left",
+        function(c)
+            c:move_to_screen(c.screen.index-1)
+        end,
+        {description = "Move client to previous screen", group = "Client Managment"}
+    ),
+    awful.key(
+        {modkey, "Mod1"},
+        "Right",
+        function(c)
+            c:move_to_screen(c.screen.index+1)
+        end,
+        {description = "Move client to next screen", group = "Client Managment"}
     )
 )

@@ -74,22 +74,6 @@ Globalkeys =
         }
     ),
     awful.key(
-        {modkey, "Mod1"},
-        "Up",
-        function()
-            awful.screen.focus_relative(1)
-        end,
-        {description = "Focus on next screen", group = "Screen"}
-    ),
-    awful.key(
-        {modkey, "Mod1"},
-        "Down",
-        function()
-            awful.screen.focus_relative(-1)
-        end,
-        {description = "Focus on previous screen", group = "Screen"}
-    ),
-    awful.key(
         {modkey, "Control"},
         "Right",
         function()
@@ -111,6 +95,7 @@ Globalkeys =
             group = "Client Managment"
         }
     ),
+
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "Reload Awesome", group = "Awesome"}),
     awful.key(
         {modkey},
@@ -198,7 +183,7 @@ Globalkeys =
     awful.key({modkey, "Control"}, "p", utils.picom.toggle, {description = "Toggle Compositor", group = "Compositor"}),
     awful.key(
         {modkey, "Mod1"},
-        "Left",
+        "Down",
         function()
             awful.layout.inc(-1)
         end,
@@ -206,7 +191,7 @@ Globalkeys =
     ),
     awful.key(
         {modkey, "Mod1"},
-        "Right",
+        "Up",
         function()
             awful.layout.inc(1)
         end,

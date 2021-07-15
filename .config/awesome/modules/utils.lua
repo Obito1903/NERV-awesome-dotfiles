@@ -9,7 +9,7 @@ local gears = require("gears")
 -- Make sure everything is as expected
 awful.spawn("sed -i '/corner-radius/s/= .*/= 5.0/' /home/obito1903/.config/picom/picom.conf")
 awful.spawn("pkill glava")
-awful.spawn("picom")
+awful.spawn("picom --experimental-backends")
 
 local Launcher_awesomeMenu = {
     {
@@ -99,7 +99,7 @@ utils = {
             if utils.picom.status then
                 awful.spawn("pkill picom")
             else
-                awful.spawn("picom")
+                awful.spawn("picom --experimental-backends")
             end
             utils.picom.status = not utils.picom.status
         end
