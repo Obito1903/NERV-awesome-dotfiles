@@ -29,10 +29,10 @@ echo "Arch ?[y/n]"
 read arch
 if [ $arch = "y" ]; then
     echo "Installing yay"
-    pacman -S --needed git base-devel
+    sudo pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/yay.git
     cd yay
-    makepkg -si
+    sudo makepkg -si
     cd ..
     rm -rf yay
 
