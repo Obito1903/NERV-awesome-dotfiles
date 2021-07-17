@@ -37,7 +37,7 @@ if [ $arch = "y" ]; then
     rm -rf yay
 
     echo "Installing base dotfiles dependency"
-    yay -Sy picom-jonaburg-git awesome-git rofi zsh noto-fonts noto-fonts-extra noto-fonts-cjk lsd playerctl alacritty
+    yay -Sy awesome-git rofi zsh noto-fonts noto-fonts-extra noto-fonts-cjk lsd playerctl alacritty
 
     echo "configuring Zsh and ohMyZsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
