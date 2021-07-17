@@ -14,11 +14,11 @@ local theme = {}
 
 theme.font = "Noto Sans Mono Regular 8"
 
-theme.bg_normal = "#0B0E12"
-theme.bg_focus = "#111319"
+theme.bg_normal = "#0B0E1280"
+theme.bg_focus = "#111319AA"
 theme.bg_urgent = "#48100E"
 theme.bg_minimize = "#424B5240"
--- theme.bg_systray = "#343D4496"
+theme.bg_systray = "#0B0E1280"
 
 theme.fg_normal = "#F0F0F0"
 theme.fg_focus = "#ffffff"
