@@ -1,5 +1,5 @@
 local apps = {
-    terminal = "termite",
+    terminal = "alacritty",
     editor = "code",
     editor_cmd = "vim"
 }

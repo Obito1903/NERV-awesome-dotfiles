@@ -1,6 +1,6 @@
 configuration {
 modi: "window,drun,ssh,combi";
-terminal: "/usr/bin/termite";
+terminal: "/usr/bin/alacritty";
 /*	width: 50;*/
 /*	lines: 15;*/
 /*	columns: 1;*/

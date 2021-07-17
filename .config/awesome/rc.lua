@@ -55,7 +55,7 @@ end
 -- }}}
 
 -- Initialize the Theme class
-local themeDir = gears.filesystem.get_dir("config") .. "themes/nerv/theme.lua"
+local themeDir = gears.filesystem.get_dir("config") .. "themes/ramielblack/theme.lua"
 print("Loading Theme From :" .. themeDir)
 beautiful.init(themeDir)
 print("Theme successfully loaded")

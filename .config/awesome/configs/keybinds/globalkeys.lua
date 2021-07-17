@@ -214,5 +214,38 @@ Globalkeys =
             description = "Toggle glave",
             group = "Apps"
         }
+    ),
+    awful.key(
+        {},
+        "XF86AudioPlay",
+        function()
+            awful.util.spawn("playerctl play-pause")
+        end,
+        {
+            description = "Play/Pause",
+            group = "Media"
+        }
+    ),
+    awful.key(
+        {},
+        "XF86AudioNext",
+        function()
+            awful.util.spawn("playerctl next")
+        end,
+        {
+            description = "Next",
+            group = "Media"
+        }
+    ),
+    awful.key(
+        {},
+        "XF86AudioPrev",
+        function()
+            awful.util.spawn("playerctl previous")
+        end,
+        {
+            description = "Previous",
+            group = "Media"
+        }
     )
 )
