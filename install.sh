@@ -47,3 +47,11 @@ if [ $arch = "y" ]; then
 else
     echo "Please install softwares listed in the readme"
 fi
+
+echo "Use picom with animation ? (may not be compatible on older intel graphics)[y/n]"
+read picom
+if [ $picom = "y" ]; then
+    yay -S picom-jonaburg-git
+else
+    yay -S picom-ibhagwan-git
+fi
