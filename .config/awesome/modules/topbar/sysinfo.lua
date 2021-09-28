@@ -57,6 +57,14 @@ Init_sysinfo = function(s)
             ),
             layout = wibox.layout.fixed.horizontal
         },
+        -- {
+        --     wibox.widget.textbox(
+        --         {
+        --             text = awful.spawn('gcalcli --nocolor agenda "`date`" tomorrow | cut -c 15- ')
+        --         }
+        --     ),
+        --     layout = wibox.layout.fixed.horizontal
+        -- },
         layout = wibox.layout.fixed.horizontal
     }
     --s.tasklist:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})

@@ -37,7 +37,7 @@ if [ $arch = "y" ]; then
     rm -rf yay
 
     echo "Installing base dotfiles dependency"
-    yay -Sy --needed awesome-git rofi zsh noto-fonts noto-fonts-extra noto-fonts-cjk lsd playerctl alacritty
+    yay -Sy --needed awesome-git rofi zsh noto-fonts noto-fonts-extra noto-fonts-cjk lsd playerctl alacritty neofetch bat duf cheat-bin
 
     echo "configuring Zsh and ohMyZsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -50,8 +50,6 @@ fi
 
 echo "Use picom with animation ? (may not be compatible on older intel graphics)[y/n]"
 read picom
-if [ $picom = "y" ]; then
+if [ $arch = "y" ] && [ $picom = "y" ] ; then
     yay -S --needed picom-jonaburg-git
-else
-    yay -S --needed picom-ibhagwan-git
 fi

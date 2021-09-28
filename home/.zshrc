@@ -117,9 +117,13 @@ alias diff='diff --color=auto'
 alias ls='ls --color=auto -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias reload='clear && source ~/.zshrc'
+
+# Tool def
 command -v code-insiders > /dev/null && alias code='code-insiders'
 alias npm='/usr/bin/npm'
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && alias l='ls -l' && alias lt='ls --tree' && alias la='ls -a' && alias lla='ls -la'
+command -v bat > /dev/null && alias cat='bat' && alias ccat='command cat'
 command -v termite > /dev/null && export TERM=termite
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -145,5 +149,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval $(thefuck --alias)
 
 command -v neofetch > /dev/null && neofetch --ascii_colors 1 --ascii ${HOME}/.config/nerv
