@@ -95,7 +95,6 @@ Globalkeys =
             group = "Client Managment"
         }
     ),
-
     awful.key({modkey, "Control"}, "r", awesome.restart, {description = "Reload Awesome", group = "Awesome"}),
     awful.key(
         {modkey},

@@ -8,6 +8,13 @@ local battery_widget = require("modules.topbar.widgets.battery-widget.battery")
 local cpu_widget = require("modules.topbar.widgets.cpu-widget.cpu-widget")
 local brightness_widget = require("modules.topbar.widgets.brightness-widget.brightness")
 
+Brightness_widget =
+    brightness_widget(
+    {
+        path_to_icons = "/usr/share/icons/Flat-Remix-Red-Dark/status/symbolic/display-brightness-symbolic.svg"
+    }
+)
+
 Init_sysinfo = function(s)
     local reduceby = 0
     if s.index == 1 then
@@ -33,11 +40,7 @@ Init_sysinfo = function(s)
             layout = wibox.layout.fixed.horizontal
         },
         {
-            brightness_widget(
-                {
-                    path_to_icons = "/usr/share/icons/Flat-Remix-Red-Dark/status/symbolic/display-brightness-symbolic.svg"
-                }
-            ),
+            Brightness_widget,
             layout = wibox.layout.fixed.horizontal
         },
         {
@@ -47,7 +50,7 @@ Init_sysinfo = function(s)
                     path_to_icons = "/usr/share/icons/Flat-Remix-Red-Dark/status/symbolic/"
                 }
             ),
-            layout = wibox.layout.fixed.horizontal
+            layout = wibox.layout.flex.horizontal
         },
         {
             cpu_widget(
@@ -57,14 +60,15 @@ Init_sysinfo = function(s)
             ),
             layout = wibox.layout.fixed.horizontal
         },
-        -- {
-        --     wibox.widget.textbox(
-        --         {
-        --             text = awful.spawn('gcalcli --nocolor agenda "`date`" tomorrow | cut -c 15- ')
-        --         }
-        --     ),
-        --     layout = wibox.layout.fixed.horizontal
-        -- },
+        {
+            wibox.widget {
+                opacity = 0,
+                orientation = "vertical",
+                widget = wibox.widget.separator
+            },
+            awful.widget.watch(gears.filesystem.get_dir("config") .. "tools/calendar.sh", 60),
+            layout = wibox.layout.flex.horizontal
+        },
         layout = wibox.layout.fixed.horizontal
     }
     --s.tasklist:struts({top = beautiful.bar_height + 2 * beautiful.bar_gap})

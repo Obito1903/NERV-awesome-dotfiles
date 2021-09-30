@@ -125,6 +125,7 @@ alias npm='/usr/bin/npm'
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && alias l='ls -l' && alias lt='ls --tree' && alias la='ls -a' && alias lla='ls -la'
 command -v bat > /dev/null && alias cat='bat' && alias ccat='command cat'
 command -v termite > /dev/null && export TERM=termite
+command -v gcalcli > /dev/null && alias calw='gcalcli calw'
 
 if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -136,6 +137,10 @@ fi
 
 if [ -d "$HOME/.cargo/bin" ]; then
     export PATH="~/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/gfstream" ] && [ ! "$(ls -A /$HOME/gfstream)" ]; then
+    command -v google-drive-ocamlfuse > /dev/null && google-drive-ocamlfuse gfstream  
 fi
 
 #man color
