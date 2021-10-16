@@ -117,6 +117,7 @@ alias diff='diff --color=auto'
 alias ls='ls --color=auto -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias "cd.."="cd"
 alias reload='clear && source ~/.zshrc'
 
 # Tool def
