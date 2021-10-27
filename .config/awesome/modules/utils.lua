@@ -85,12 +85,12 @@ utils = {
     rounded_corner = {
         status = true,
         toggle = function()
-            if utils.rounded_rect.status then
-                awful.spawn.with_shell("sed -i '/corner-radius/s/= .*/= 0.0/' /home/obito1903/.config/picom/picom.conf")
+            if utils.rounded_corner.status then
+                awful.spawn.with_shell("sed -i '/corner-radius/s/= .*/= 0.0/' $HOME/.config/picom/picom.conf")
             else
-                awful.spawn.with_shell("sed -i '/corner-radius/s/= .*/= 5.0/' /home/obito1903/.config/picom/picom.conf")
+                awful.spawn.with_shell("sed -i '/corner-radius/s/= .*/= 5.0/' $HOME/.config/picom/picom.conf")
             end
-            utils.rounded_rect.status = not utils.rounded_rect.status
+            utils.rounded_corner.status = not utils.rounded_corner.status
         end
     },
     picom = {

@@ -12,7 +12,7 @@ local themes_path = gfs.get_dir("config") .. "themes/"
 local dpi = xresources.apply_dpi
 local theme = {}
 
-theme.font = "Noto Sans Mono Regular 8"
+theme.font = "Noto Sans 8"
 
 theme.bg_normal = "#0B0E1280"
 theme.bg_focus = "#111319AA"

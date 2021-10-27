@@ -1,1 +1,1 @@
-/home/obito1903/Documents/NERV-awesome-dotfiles/home/.p10k.zsh
+/data/Documents/NERV-awesome-dotfiles/home/.p10k.zsh

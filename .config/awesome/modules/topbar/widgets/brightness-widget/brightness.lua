@@ -41,8 +41,8 @@ local function worker(user_args)
     local step = 10
     if program == "light" then
         get_brightness_cmd = "light -G"
-        inc_brightness_cmd = "sudo light -A " .. step
-        dec_brightness_cmd = "sudo light -U " .. step
+        inc_brightness_cmd = "light -A " .. step
+        dec_brightness_cmd = "light -U " .. step
     elseif program == "xbacklight" then
         get_brightness_cmd = "xbacklight -get"
         inc_brightness_cmd = "xbacklight -inc " .. step
